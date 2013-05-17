@@ -1,4 +1,4 @@
 sample-apps
 ===========
 
-For sample applications used in brown bags and tech talks
+This repository is for sample applications or components used in Log(N) brown bags and tech talks.
