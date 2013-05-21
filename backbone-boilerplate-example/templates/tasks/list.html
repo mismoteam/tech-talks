@@ -1,0 +1,13 @@
+
+<% if(error) { %>
+<p class="alert alert-error"><%= error %></p>
+<% } %>
+
+<% if(tasks) {  %>
+	<% tasks.each(function(task){ %>
+
+		<p class="alert alert-info"><%= task.get('title') %> <button type="button" id="btn-remove" class="btn btn-danger delete-task"><i class="icon icon-white icon-remove pull-right" /> </button></p>
+
+	<% }) %>	
+
+<% } %>
