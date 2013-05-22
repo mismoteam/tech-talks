@@ -56,7 +56,7 @@ define([
                 'Authorization' : 'Bearer ' + config.authToken
               },
               success: function(model, response){
-                
+                console.log('Task created id=' + model.get('id'));
               },
               error: function(xhr, response, options){
                 alert('Error creating task title=' + value);

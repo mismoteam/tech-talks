@@ -23,9 +23,13 @@ define([
       
       render: function () {
 
-        var el = this.$el || $.find('.taskList'),
+        var el = this.$el,
         tasks = new taskCollection(),
         error = '';
+
+        if(el === undefined){
+          el = $('.taskList');
+        }
 
         // Show the loading widget
         el.html(loadingTemplate);
@@ -58,7 +62,7 @@ define([
 
         var that = this,
             el = this.$el,
-            btn = $(event.target),
+            btn = ($(event.target).context.tagName === 'BUTTON') ? $(event.target) : $(event.target.parentNode),
             taskId = btn ? btn.attr('data-task-id') : '',
             task = new taskModel({id: taskId}),
             tasks = new taskCollection(),
@@ -67,6 +71,7 @@ define([
           if(taskId !== ''){
 
             el.html(loadingTemplate);
+            console.log('Deleting task id=' + taskId);
 
             el.ajaxStop(function(){
 
@@ -82,7 +87,7 @@ define([
                 'Authorization' : 'Bearer ' + config.authToken
               },
               success: function(model, response){
-                
+                console.log('Deleted task id=' + taskId);
               },
               error: function(xhr, response, options){
                 alert('Error deleting task id=' + taskId);
