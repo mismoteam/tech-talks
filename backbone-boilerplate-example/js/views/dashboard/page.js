@@ -3,13 +3,17 @@ define([
   'underscore',
   'backbone',
   'config',
+  'text!templates/dashboard/authorizing.html',
   'text!templates/dashboard/page.html'
-], function($, _, Backbone, config, dashboardPageTemplate){
+], function($, _, Backbone, config, authorizingTemplate, dashboardPageTemplate){
   var DashboardPage = Backbone.View.extend({
     el: '.page',
     render: function () {
       var el = $(this.el);
- // Load google api and authorize if necessary
+
+        el.html(authorizingTemplate);
+
+        // Load google api and authorize if necessary
         if(config.authToken === ''){
           require(['https://apis.google.com/js/client.js'], function() {
             // Poll until gapi is ready

@@ -4,11 +4,18 @@ define([
   'backbone',
   'config',
   'collections/tasks',
+  'models/task',
   'text!templates/tasks/list.html',
   'text!templates/widgets/loading.html'
-  ], function($, _, Backbone, config, taskCollection, taskListTemplate,loadingTemplate){
+  ], function($, _, Backbone, config, taskCollection, taskModel, taskListTemplate,loadingTemplate){
     var TaskListView = Backbone.View.extend({
       el: '.taskList',
+
+      events: {
+
+        'click #btn-remove' : 'removeTask'
+
+      },
       
       intialize: function () {
 
@@ -16,7 +23,7 @@ define([
       
       render: function () {
 
-        var el = this.$el,
+        var el = this.$el || $.find('.taskList'),
         tasks = new taskCollection(),
         error = '';
 
@@ -27,7 +34,7 @@ define([
         el.ajaxStop(function(){
 
           el.unbind('ajaxStop');
-          
+
           el.html(_.template(taskListTemplate, {error: error, tasks: tasks}));
 
         });
@@ -45,7 +52,47 @@ define([
           }
         });
 
-        
+      },
+
+      removeTask: function(event){
+
+        var that = this,
+            el = this.$el,
+            btn = $(event.target),
+            taskId = btn ? btn.attr('data-task-id') : '',
+            task = new taskModel({id: taskId}),
+            tasks = new taskCollection(),
+            error;
+
+          if(taskId !== ''){
+
+            el.html(loadingTemplate);
+
+            el.ajaxStop(function(){
+
+              el.unbind('ajaxStop');
+
+              that.render();
+
+            });
+
+            //delete the task
+            task.destroy({
+              headers: {
+                'Authorization' : 'Bearer ' + config.authToken
+              },
+              success: function(model, response){
+                
+              },
+              error: function(xhr, response, options){
+                alert('Error deleting task id=' + taskId);
+              }
+            });
+
+          }
+          else{
+            alert('Invalid task Id');
+          }
 
       }
 

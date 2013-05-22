@@ -10,3 +10,22 @@
 @import url("bootstrap.css");
 
 
+#btn-create {
+
+	margin: -10px 0 0 10px;
+
+}
+
+#btn-remove {
+
+	float: right;
+	margin-top: -2px;
+
+}
+
+.alert {
+
+	padding-right: 14px;
+	width: 50%;
+
+}
