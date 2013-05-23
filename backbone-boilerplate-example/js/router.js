@@ -1,4 +1,3 @@
-// Filename: router.js
 define([
   'jquery',
   'underscore',
@@ -9,7 +8,6 @@ define([
     routes: {
       // Pages
       'tasks': 'tasks',
-      
       // Default - catch all
       '*actions': 'defaultAction'
     }

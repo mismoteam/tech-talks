@@ -9,8 +9,6 @@ define([
     el: '.page',
     initialize: function () {
     
-      
-
     },
     render: function () {
       var that = this;

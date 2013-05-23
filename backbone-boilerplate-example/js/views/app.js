@@ -10,10 +10,9 @@ define([
     el: '.container',
     initialize: function () {
     
-       
-      
     },
     render: function () {
+
       var that = this;
       $(this.el).html(layoutTemplate);
 
@@ -26,8 +25,6 @@ define([
         var footerView = Vm.create(that, 'FooterView', FooterView);
         footerView.render();
       });
-
-
     
     }
   });

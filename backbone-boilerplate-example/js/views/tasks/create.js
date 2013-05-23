@@ -29,7 +29,8 @@ define([
       var el = this.$el,
           input = $('#input-title'),
           value = input.val(),
-          task = new taskModel();
+          task = new taskModel(),
+          listView = Vm.get('TaskListView');
 
       if(value !== ''){
 
@@ -43,7 +44,7 @@ define([
               el.unbind('ajaxStop');
 
               //Refresh the list
-              Vm.callFunction('TaskListView', 'render');
+              
 
               //Show the create input again
               el.html(taskCreateTemplate);

@@ -19,12 +19,14 @@ define([
       
       intialize: function () {
 
+        this.collection = new taskCollection();
+
       },
       
       render: function () {
 
         var el = this.$el,
-        tasks = new taskCollection(),
+        tasks = this.collection,
         error = '';
 
         if(el === undefined){
@@ -65,7 +67,7 @@ define([
             btn = ($(event.target).context.tagName === 'BUTTON') ? $(event.target) : $(event.target.parentNode),
             taskId = btn ? btn.attr('data-task-id') : '',
             task = new taskModel({id: taskId}),
-            tasks = new taskCollection(),
+            tasks = this.collection,
             error;
 
           if(taskId !== ''){

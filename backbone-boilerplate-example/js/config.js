@@ -4,8 +4,7 @@
  */
 
 define([
-    'jquery'
-], function($){
+], function(){
 
 	var apiBaseUrl = 'https://www.googleapis.com/tasks/v1/'; 
     var taskListId = 'MTA4NjY3ODU1NTA3NjgwMjM0NTk6MTIyMDY1MDUxNzow';
