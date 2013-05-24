@@ -13,3 +13,5 @@ To run:
 
 3. Modify the task list id to one that you own (or implement selecting it in the UI!)
 4. Authorize through the Google OAuth popup.
+
+Made with http://backboneboilerplate.com/
