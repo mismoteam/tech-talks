@@ -42,23 +42,15 @@ define([
      * @param params
      * @return {*}
      */
-    var callFunction = function (viewName, funcName, params) {
+    var get = function (viewName) {
 
-        var view = views[viewName],
-            func = typeof(view[funcName] === 'function') ? view[funcName] : undefined;
-        result = undefined;
-
-        if(view && func ){
-            result = func(params);
-        }
-
-        return result;
+        return views[viewName];
 
     };
   
   
   return {
     create: create,
-    callFunction: callFunction
+    get: get
   };
 });

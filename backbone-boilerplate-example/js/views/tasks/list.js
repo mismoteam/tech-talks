@@ -19,14 +19,13 @@ define([
       
       intialize: function () {
 
-        this.collection = new taskCollection();
 
       },
       
       render: function () {
 
         var el = this.$el,
-        tasks = this.collection,
+        tasks = new taskCollection(),
         error = '';
 
         if(el === undefined){
@@ -36,7 +35,7 @@ define([
         // Show the loading widget
         el.html(loadingTemplate);
 
-        //Wait until the task list is fetched before 
+        //Wait until the task list is fetched before rendering
         el.ajaxStop(function(){
 
           el.unbind('ajaxStop');

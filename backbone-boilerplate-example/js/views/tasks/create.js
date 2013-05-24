@@ -39,30 +39,25 @@ define([
 
         task.set('title', value);
 
-        el.ajaxStop(function(){
-
-              el.unbind('ajaxStop');
-
-              //Refresh the list
-              
-
-              //Show the create input again
-              el.html(taskCreateTemplate);
-
-        });
-
         //create the task
-            task.save({}, {
-              headers: {
-                'Authorization' : 'Bearer ' + config.authToken
-              },
-              success: function(model, response){
-                console.log('Task created id=' + model.get('id'));
-              },
-              error: function(xhr, response, options){
-                alert('Error creating task title=' + value);
-              }
-            });
+        task.save({}, {
+          headers: {
+            'Authorization' : 'Bearer ' + config.authToken
+          },
+          success: function(model, response){
+            console.log('Task created id=' + model.get('id'));
+            //Refresh the list view
+            if(listView){
+              listView.render();
+            }
+
+            //Show the create input again
+            el.html(taskCreateTemplate);
+          },
+          error: function(xhr, response, options){
+            alert('Error creating task title=' + value);
+          }
+        });
 
       }
       else{

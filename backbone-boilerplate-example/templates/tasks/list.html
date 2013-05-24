@@ -4,9 +4,15 @@
 <% } %>
 
 <% if(tasks) {  %>
+
 	<% tasks.each(function(task){ %>
 
-		<p class="alert alert-info"><%= task.get('title') %> <button type="button" id="btn-remove" class="btn btn-danger" data-task-id="<%= task.get('id') %>"><i class="icon icon-white icon-remove pull-right" /> </button></p>
+		<p class="alert alert-info">
+			<%= task.get('title') %> 
+			<button type="button" id="btn-remove" class="btn btn-danger" data-task-id="<%= task.get('id') %>">
+				<i class="icon icon-white icon-remove pull-right" /> 
+			</button>
+		</p>
 
 	<% }) %>	
 
